@@ -1,0 +1,142 @@
+body, html {
+  margin: 0;
+  height: 100%;
+  font-family: 'Quicksand', sans-serif;
+  overflow: hidden;
+}
+
+/* Animated background gradient */
+.background {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  z-index: -1;
+}
+@keyframes gradientShift {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* Center button */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+#openBtn {
+  padding: 18px 32px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 30px;
+  background: #fff;
+  color: #ff4f81;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+#openBtn:hover {
+  transform: scale(1.1);
+}
+
+/* Message card */
+.card {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: rgba(255,255,255,0.9);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+.card.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.hidden { display: none; }
+
+.title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  color: #ff4f81;
+  margin-bottom: 20px;
+}
+
+.line {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease;
+}
+.line.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hearts */
+.hearts {
+  position: relative;
+  height: 100px;
+  margin-top: 20px;
+}
+.heart {
+  position: absolute;
+  width: 20px; height: 20px;
+  background: #ff4f81;
+  transform: rotate(45deg);
+  animation: floatUp 5s ease forwards;
+}
+.heart::before, .heart::after {
+  content: "";
+  position: absolute;
+  width: 20px; height: 20px;
+  background: #ff4f81;
+  border-radius: 50%;
+}
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: -10px; top: 0; }
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+  100% { transform: translateY(-120px) rotate(45deg); opacity: 0; }
+}
+/* Button pulse */
+#openBtn.pulse {
+  box-shadow: 0 0 20px #fff, 0 0 40px #ff4f81;
+}
+
+/* Card bounce */
+.card.bounce {
+  animation: bounceIn 1s ease;
+}
+@keyframes bounceIn {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  60% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Spinning hearts */
+.heart.spin {
+  animation: floatUp 6s ease forwards, spin 6s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg) translateY(0); }
+  to   { transform: rotate(360deg) translateY(-120px); }
+}
+
+/* Confetti pieces */
+.confetti {
+  position: fixed;
+  top: 0;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+}
